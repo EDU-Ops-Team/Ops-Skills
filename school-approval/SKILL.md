@@ -14,6 +14,26 @@ Given an address, determine how hard it is to legally open a recognized private 
 
 The three questions this skill must answer: **Can we do this? What will it take? How long will it take?**
 
+## Scope Boundary
+
+This skill covers **education regulatory approval only** — what the state or local education authority requires before a private K-8 school may legally operate.
+
+**In scope:**
+- State education department registration, licensing, or approval requirements
+- Education authority-mandated inspections (e.g., TN SFMO inspection required by SBE approval; NC fire/sanitation required by DNPE notification)
+- Teacher certification requirements imposed by the education authority
+- Curriculum pre-approval required by the education authority
+- Local education bodies that must approve school operation (e.g., MA school committee)
+- Calendar windows controlled by the education approving body
+
+**Out of scope — do not research or report on:**
+- Certificate of Occupancy (CO) process — universally required for any occupancy; covered by separate Site Investigation Report workflow
+- Zoning, land use, or planning approvals — covered by SIR workflow
+- Building permits, fire marshal inspections as part of CO, architectural submissions for occupancy
+- Business entity registration (LLC, nonprofit formation)
+
+> A building inspection or fire inspection is only **in scope** if the education authority explicitly requires it as a condition of granting school approval. The TN State Fire Marshal inspection (required by SBE before school approval) is in scope. A standard fire marshal sign-off as part of a CO is not.
+
 ---
 
 ## Step 1 — Classify State Archetype
@@ -118,14 +138,16 @@ Tennessee uses a five-category approval system. Run this specific protocol:
 
 ---
 
-## Step 3 — Check for Local Overlay
+## Step 3 — Check for Local Education Overlay
 
-In some cities and counties, local requirements layer on top of state requirements. This is most common in `APPROVAL_REQUIRED` and `HEAVILY_REGULATED` states.
+In some cities and counties, a **local education authority** layers additional approval requirements on top of state requirements. This is most common in `APPROVAL_REQUIRED` and `HEAVILY_REGULATED` states.
 
 Search:
-- `[CITY] private school local approval permit requirement`
+- `[CITY] [COUNTY] private school education approval local requirement`
 
-Flag any local overlay in `local_requirements.has_local_overlay`. Add the additional timeline to `timeline_days_preopen`.
+A local overlay exists only if a **local education body** (school board, school committee, county education office) must formally approve the school before it may operate. Zoning boards, planning commissions, and building departments are not education authorities and are never a local overlay for this analysis.
+
+Flag any local education overlay in `local_requirements.has_local_overlay`. Add the additional timeline to `timeline_days_preopen`.
 
 > MA is uniquely high-risk here: each town's school committee operates independently and has discretionary authority. There is no state-level appeal. Treat each MA city as a distinct approval environment.
 
@@ -133,17 +155,19 @@ Flag any local overlay in `local_requirements.has_local_overlay`. Add the additi
 
 ## Step 4 — Identify Pre-Open Gating Requirements
 
-For every state, confirm whether any of the following must be completed **before doors open**:
+For every state, confirm whether any of the following must be completed **before doors open**. All items must be required by the **education authority** — not as a general business or building requirement.
 
 | Requirement | When it applies |
 |---|---|
 | Teacher certification | WA (all teachers must be certificated), some others |
 | Curriculum pre-approval | WA, NY, some Approval Required states |
-| State or local fire/sanitation inspection | NC, FL (fingerprinting), TN (SFMO), some Notification states |
-| Background checks/fingerprinting | FL (owner), some others |
+| Education authority-mandated inspection | NC (fire/sanitation required by DNPE as part of NOI), TN (SFMO inspection required by SBE before approval) — only when the education authority explicitly conditions approval on it |
+| Background checks/fingerprinting | FL (owner fingerprinting required as part of DOE registration), some others |
 | Cash reserve demonstration | MI ($50K for non-church schools) |
-| Architectural/traffic submission | NV (even for <20 students) |
-| On-site inspection by state | NY (NYSED site visit before registration) |
+| Architectural/traffic submission | NV (required by education approval process, even for <20 students) |
+| On-site inspection by education authority | NY (NYSED site visit before registration) |
+
+> **Do not flag** fire marshal sign-offs, building inspections, or CO requirements that are part of standard occupancy — these are out of scope regardless of archetype.
 
 ---
 
@@ -425,6 +449,12 @@ Use these facts to guide research and verify findings. Do not re-derive what is 
 6. `Seattle, WA` → WINDOWED, RED, ~48, calendar_window populated, certificated teachers flagged
 7. `Any address` → `source_urls` non-empty OR `data_quality_flags` includes "NO_OFFICIAL_SOURCE_FOUND"
 8. `Unknown State, XX` → YELLOW, 70, archetype="UNKNOWN", "ADDRESS_STATE_UNRESOLVED" flag
+
+---
+
+## Step 6 — Produce Human-Readable Report
+
+After the JSON, produce the human-readable report defined in `references/report-template.md`. Follow that template exactly — every section in order, no sections skipped. Populate from the JSON fields you just composed. The report is the primary deliverable for human analysts; the JSON is the machine-readable companion.
 
 ---
 
