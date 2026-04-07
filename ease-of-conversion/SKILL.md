@@ -190,6 +190,9 @@ Calculate or infer:
 - likely code cost items
 - conversion difficulty tier
 - E-Occupancy Score and rating (calculate per rubric in `references/site-eval-brainlift.md`)
+- construction scope checklist: for each code trigger identified above, state the physical work required and its cost range using the Construction Scope Inference table in `references/site-eval-brainlift.md`. Order by cost, largest first. Flag items that cannot be confirmed remotely as "Unknown until field visit."
+- timeline posture: using the timeline range from Phase 5, determine SHORT, MIDRANGE, or LONG. Count the following SHORT indicators minus LONG indicators — net positive = SHORT, net zero (±1) = MIDRANGE, net negative = LONG. SHORT indicators: no planning review required, no pre-submittal meeting required, fire authority accepts pre-submittal engagement, single primary blocking track, 0–1 D-confidence items on critical-path steps, building already Group E. LONG indicators: CUP or SUP required, pre-submittal or neighborhood meeting required, fire authority refuses pre-submittal engagement, 2+ sequential blocking tracks, 3+ D-confidence items on critical-path steps, occupancy change required. State the posture and list 2–3 plain-English reasons.
+- cost posture: determine BELOW TYPICAL, TYPICAL, or ABOVE TYPICAL for a K-8 conversion. BELOW TYPICAL indicators: building already Group E, fire area under 12K SF with no basement, post-1980 construction, existing school infrastructure in place. ABOVE TYPICAL indicators: occupancy change required from incompatible group (S, R, I), sprinkler retrofit triggered, pre-1960 building with probable hazmat, egress deficient or entirely unknown, CUP/SUP fees. Count BELOW minus ABOVE indicators using same net scoring. State the posture and list 2–3 plain-English bullet reasons covering the biggest cost drivers or cost reducers.
 
 ### Phase 8: Site Operations and Infrastructure
 
@@ -218,7 +221,42 @@ Generate vendor task cards only for unknowns that materially affect:
 
 The final report must contain these sections.
 
-### 1. Executive Summary
+### 1. Executive Impact Summary
+
+This section appears first — before all other sections. It is written for executive stakeholders who need straight-to-the-point answers. Use plain language at no higher than an 8th-grade reading level. No sentences over 20 words where avoidable. No code jargon without a plain-English explanation in the same sentence.
+
+Include these six subsections in order:
+
+**Score at a Glance**
+One line: score, color band, recommendation. Then one plain-English sentence that says what the score means. Examples:
+- GREEN/PROCEED: "This building has no known barriers to opening a school. The work ahead is routine."
+- YELLOW/CAUTION: "This building can work, but several unknowns need answers before you commit."
+- ORANGE/JUSTIFICATION: "This building has serious problems. Only move forward if the business case is strong enough to justify extra cost and time."
+- RED/PASS: "This building is unlikely to work as a school. Walk away unless the situation changes."
+
+**What Must Be Built**
+A checkbox checklist of construction and renovation scope items inferred from Phase 7 code triggers and Phase 8 infrastructure gaps. Use the Construction Scope Inference table in `references/site-eval-brainlift.md`. Order by cost, largest first. Each item states WHAT and WHY in one plain-English line. After the list, add one sentence noting any unknowns that could expand scope once the building is inspected.
+
+Format: `- [ ] [Item] — [Plain-English reason: e.g., "required because the building is over 12,000 SF"]`
+
+**Permits and Approvals**
+A numbered sequential list of every permit, review, and approval required — in the order they must happen. Each entry names the authority and states in plain English whether it must happen before or at the same time as another step.
+
+**Timeline Outlook**
+State the report's best-case and worst-case range, then state the posture (SHORT / MIDRANGE / LONG) and give 2–3 bullet reasons in plain English. Example: "This site skews toward the SHORT end because no planning review is needed, the fire department will talk to you before you submit plans, and the building is already permitted as a school."
+
+**Cost Outlook**
+State the permit fee range and estimated buildout range, then state the cost posture (BELOW TYPICAL / TYPICAL / ABOVE TYPICAL) and give 2–3 bullet reasons in plain English covering the biggest cost drivers or reducers.
+
+**Risk Watch**
+A table of items that could blow up the timeline or budget. Each row states what could go wrong, what happens if it does, and how likely it is. Use four likelihood levels only: Unknown until field visit, Low, Moderate, High.
+
+| Risk | What happens if it goes wrong | Likelihood |
+|---|---|---|
+
+---
+
+### 2. Executive Summary
 
 Include:
 
@@ -229,7 +267,7 @@ Include:
 - score / rating
 - main timeline risk
 
-### 2. What We Know Remotely
+### 3. What We Know Remotely
 
 Structured tables for:
 
@@ -250,7 +288,7 @@ Structured list of unresolved items with:
 - what decision they block
 - whether the gap is remote-researchable or field-only
 
-### 4. Critical Vendor Tasks
+### 5. Critical Vendor Tasks
 
 Self-contained task cards for deal-killer unknowns such as:
 
@@ -265,11 +303,11 @@ Self-contained task cards for deal-killer unknowns such as:
 - kitchen and food-service infrastructure
 - pickup / drop-off circulation observations
 
-### 5. Timeline and Dependency Table
+### 6. Timeline and Dependency Table
 
 This IS the Flag Page's Permit Review Time Summary table from `references/sir-report.md`. Do not produce a separate timeline table — the Flag Page table with its Concurrent/Blocking columns serves as the dependency map.
 
-### 6. Fee and Cost Table
+### 7. Fee and Cost Table
 
 Separate:
 
@@ -278,7 +316,7 @@ Separate:
 - estimated buildout range
 - `TBD` items
 
-### 7. Recommendation
+### 8. Recommendation
 
 One of:
 
@@ -287,7 +325,7 @@ One of:
 - `REQUIRES JUSTIFICATION`
 - `PASS`
 
-### 8. File Output
+### 9. File Output
 
 Save the completed report to:
 

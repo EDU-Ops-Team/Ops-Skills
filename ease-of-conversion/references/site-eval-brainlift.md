@@ -28,6 +28,27 @@
 
 ---
 
+## Construction Scope Inference from Code Triggers
+
+When a code trigger is identified, the following physical work items are implied. Use this table to populate the Executive Impact Summary "What Must Be Built" checklist. Order items by cost, largest first.
+
+| Code Trigger | Implied Construction Scope | Typical Cost Range |
+|---|---|---|
+| Sprinkler required (fire area >12K SF or below-grade) | Full NFPA 13 sprinkler system installation | $3–6/SF ($36K–$72K at 12K SF; $60K–$150K at 20K SF) |
+| Egress deficient (travel distance, exit count, corridor width) | Egress reconstruction — exits, corridors, or door relocation | $20K–$100K+ (may be a fatal flaw if structurally infeasible) |
+| Hazmat testing required (pre-1980 building) | Asbestos/lead testing; abatement if found | $1,500–$5,000 testing; $10K–$50K+ abatement |
+| Storm shelter required (250 mph zone, ≥50 occupants) | Shelter construction or identification and hardening | $15K–$50K+ |
+| Kitchen non-compliant (health dept or FAC 4E-11) | Kitchen infrastructure: hand sink, mop sink, refrigerator, smooth surfaces | $5K–$20K |
+| Restrooms non-compliant (FAC 6A-2.0040 or local code) | Restroom reconfiguration or addition; M/F separation, staff restroom | $10K–$30K |
+| Fire alarm required (Group E ≥50 occupants) | New or upgraded addressable fire alarm system | $5K–$20K |
+| Panic hardware required (≥50 occupants, all egress doors) | Install panic bars on all egress doors | $300–500/door ($1,200–$4,000 typical for 4–8 doors) |
+| ADA path non-compliant | Accessible path remediation: ramps, door hardware, signage | $2K–$10K |
+| Occupancy change from incompatible group (S, R, I) | Major interior buildout: partition walls, plumbing rough-in, HVAC reconfiguration | $50K–$200K+ (site-specific) |
+
+**Note**: Items marked "Unknown until field visit" in the Risk Watch table are not yet confirmed. Add them to the budget as contingency until the building inspection validates or clears each one.
+
+---
+
 ## Critical Thresholds (IBC 2024)
 
 | Threshold | Triggers | IBC Section |
