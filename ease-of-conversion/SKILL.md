@@ -280,7 +280,7 @@ Structured tables for:
 - site operations and infrastructure (must include: sewer, water, internet)
 - feasibility calculations and cost estimates
 
-### 3. What We Do Not Know Yet
+### 4. What We Do Not Know Yet
 
 Structured list of unresolved items with:
 
