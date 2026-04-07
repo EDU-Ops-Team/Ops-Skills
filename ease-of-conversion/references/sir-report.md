@@ -17,6 +17,82 @@ which covers the building feasibility and vendor task sections.
 
 ---
 
+## EXECUTIVE IMPACT SUMMARY
+
+**Score: [XX] / 100 — [COLOR]  |  Recommendation: [PROCEED / PROCEED WITH CAUTION / REQUIRES JUSTIFICATION / PASS]**
+
+[One plain-English sentence stating what this means. No jargon. Max 20 words.
+GREEN/PROCEED example: "This building has no known barriers to opening a school. The work ahead is routine."
+YELLOW/CAUTION example: "This building can work, but several unknowns need answers before you commit."
+ORANGE/JUSTIFICATION example: "This building has serious problems. Only move forward if the business case justifies extra cost and time."
+RED/PASS example: "This building is unlikely to work as a school. Walk away unless the situation changes."]
+
+---
+
+### What Must Be Built
+
+[Checkbox checklist of construction and renovation scope inferred from code triggers and infrastructure gaps.
+Order by cost, largest first. Each item: WHAT + WHY in one plain-English line. Use the Construction Scope
+Inference table in references/site-eval-brainlift.md to populate cost ranges.]
+
+- [ ] [Item] — [Plain-English reason, e.g., "required because the building is over 12,000 square feet"]
+- [ ] [Item] — [Plain-English reason]
+- [ ] ...
+
+**What we don't know yet:** [One sentence naming field-only unknowns that could add to this list and what it would mean for budget if they go wrong. The building inspection will confirm or clear these.]
+
+---
+
+### Permits and Approvals
+
+[Numbered sequential list of every permit, review, and approval required — in the order they must happen.
+State in plain English whether each step runs at the same time as another or must wait for one to finish.]
+
+1. **[Permit/Review Name]** — [Authority Name] — [e.g., "Start this on Day 1, same time as the building permit" or "Cannot file until Step 3 is complete"]
+2. **[Permit/Review Name]** — [Authority Name] — [Concurrency/blocking note]
+3. ...
+
+---
+
+### Timeline Outlook
+
+**Range from this report: [X] weeks (best case) to [Y] weeks (worst case)**
+
+**This site skews toward the [SHORT / MIDRANGE / LONG] end because:**
+- [Plain-English reason, e.g., "No planning review is needed — that step is off the critical path entirely."]
+- [Plain-English reason, e.g., "The fire department will talk to you before you submit plans, so there are no surprise requirements waiting at review."]
+- [Plain-English reason — include a LONG reason if applicable, e.g., "The city requires a public hearing before the permit can be filed. That adds 8–16 weeks before construction can start."]
+
+---
+
+### Cost Outlook
+
+**Permit fees: ~$[X] to $[Y]**
+**Estimated buildout: ~$[X] to $[Y]**
+
+**This site's costs run [BELOW TYPICAL / TYPICAL / ABOVE TYPICAL] for a K-8 conversion because:**
+- [Plain-English reason, e.g., "The building is already permitted as a school — the biggest conversion cost is already off the table."]
+- [Plain-English reason covering biggest cost driver or reducer]
+- [Plain-English reason if applicable]
+
+**Big-ticket items to watch:**
+- [Item and cost range, e.g., "Sprinkler system: $60K–$150K if required (field inspection will confirm)"]
+- [Item and cost range if applicable]
+
+---
+
+### Risk Watch
+
+[Items that could blow up the timeline or budget. Use four likelihood levels only:
+Unknown until field visit, Low, Moderate, High.]
+
+| Risk | What happens if it goes wrong | Likelihood |
+|---|---|---|
+| [Risk item] | [Plain-English consequence — e.g., "Adds $60K–$150K and 4–6 weeks to install a sprinkler system"] | [Unknown until field visit / Low / Moderate / High] |
+| [Risk item] | [Plain-English consequence] | [Likelihood] |
+
+---
+
 ## FLAG PAGE
 
 This is the most critical section. Decision-makers read this first.
@@ -280,3 +356,6 @@ process. Timeline and fee estimates are based on current jurisdiction practices 
 - Contact information must be present for every researched department
 - Open items table at the end ensures nothing falls through the cracks
 - The SIR sections pair with the vendor-ready report sections to form the complete AI-First SIR output
+- **Executive Impact Summary reading level**: No higher than 8th grade. No jargon without a plain-English explanation in the same sentence. Sentences under 20 words where possible. Write like you're explaining to a smart business owner who has never read a building code.
+- **"What Must Be Built" format**: Use markdown checkboxes (`- [ ]`) so stakeholders can use the list as a tracking document during the project.
+- **Risk Watch likelihood levels**: Use exactly four levels — "Unknown until field visit", "Low", "Moderate", "High". No other options.
