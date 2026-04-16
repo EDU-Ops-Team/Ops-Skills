@@ -2,7 +2,7 @@
 name: brainlift-capacity
 description: >-
   Calculate microschool student capacity using the Brainlift rules (JC Fischer methodology).
-  Accepts multiple input types: Google Sheets with room/SF data, floor plan images (PDF, JPG, PNG),
+  Accepts multiple input types: spreadsheets with room/SF data, floor plan images (PDF, JPG, PNG),
   or manual room lists. Applies all Brainlift constraints (gross SF ceiling, NLA at 42 SF/student,
   80% NLA cap, classroom-sharing multiplier, workshop requirement, dining, play area, 1:1 meeting
   space, sunlight, bathrooms) and outputs a step-by-step capacity calculation with the final number.
@@ -11,7 +11,7 @@ description: >-
   lease flyer, floor plan, or room schedule for capacity purposes.
 metadata:
   author: greg-foote
-  version: '1.0'
+  version: '1.1'
 ---
 
 # Brainlift Capacity Calculator
@@ -30,30 +30,30 @@ Use when the user asks to:
 
 This skill handles three input modes. Determine which applies based on what the user provides.
 
-### Mode 1: Google Sheets Link
-The user shares a link to a Google Sheets spreadsheet containing room names, square footages, and NLA flags.
+### Mode 1: Spreadsheet
+The user shares a spreadsheet (Google Sheets link, Excel file, or CSV) containing room names, square footages, and NLA classification flags.
 
-**Steps:**
-1. Connect to Google Sheets (use the `google_sheets__pipedream` connector)
-2. Call `get-spreadsheet-info` to discover worksheet names and structure
-3. Call `get-values-in-range` to read the room data
-4. Identify columns for: Room Name, Square Footage, NLA flag (Yes/No)
-5. If multiple tabs exist, calculate capacity for each tab separately
-6. Extract: NFA (total), NLA (sum of NLA-flagged rooms), and individual room inventory
+**What to extract:**
+1. Open the spreadsheet and identify all worksheet tabs — if multiple tabs exist, calculate capacity for each tab separately
+2. Find the columns for: Room Name, Square Footage, and NLA flag (Yes/No or equivalent)
+3. Look for summary rows that may contain pre-calculated totals for NFA and NLA
+4. Record every room with its name, square footage, and NLA classification
+5. Sum all room SF to get the NFA (Net Floor Area); sum NLA-flagged rooms to get total NLA
+6. If the spreadsheet contains a pre-calculated capacity number, note it for comparison
 
 ### Mode 2: Floor Plan Image (PDF, JPG, PNG)
 The user shares a floor plan drawing — from a lease flyer, architectural plan, or similar document.
 
-**Steps:**
-1. Read the file using the `read` tool (renders PDF pages and images for visual analysis)
-2. Examine the floor plan carefully to identify every labeled room
-3. For each room, determine:
+**What to extract:**
+1. Examine the floor plan image carefully and identify every labeled room
+2. For each room, determine:
    - Room name/type (classroom, office, bathroom, kitchen, storage, hallway, etc.)
    - Estimated SF based on proportional analysis against the known total building SF
    - Whether it qualifies as NLA (has windows/natural light, is a learning space, not utility/admin)
-4. Note that floor plans are often marked "not to scale" — use the total building SF from the flyer/listing as the constraint and allocate room sizes proportionally
+3. Get the total building SF from the flyer, listing, or user — this is the anchor for proportional estimates
+4. Floor plans are often marked "not to scale" — use the total building SF as the constraint and allocate room sizes proportionally based on visual area
 5. Flag rooms where NLA classification is uncertain (e.g., interior rooms that may lack windows)
-6. Run a sensitivity analysis showing conservative, mid, and generous NLA estimates
+6. Always run a sensitivity analysis showing conservative, mid, and generous NLA estimates
 
 **Room Classification Guide for Floor Plans:**
 
@@ -70,7 +70,7 @@ The user shares a floor plan drawing — from a lease flyer, architectural plan,
 | | Breezeway (outdoor) |
 
 **NLA Disqualifiers:**
-- No windows / no natural light → cannot be NLA (use as workshop)
+- No windows / no natural light → cannot be NLA (use as workshop instead)
 - Bathroom → never NLA
 - Pure circulation (hallway) → never NLA
 - Admin/office → not NLA unless explicitly repurposed for learning
@@ -78,7 +78,7 @@ The user shares a floor plan drawing — from a lease flyer, architectural plan,
 ### Mode 3: Manual Room List
 The user provides room names and sizes in text (chat message, pasted table, etc.).
 
-**Steps:**
+**What to extract:**
 1. Parse the room list from the user's message
 2. Ask for total NFA if not provided
 3. Classify each room as NLA or non-NLA based on room type
@@ -133,11 +133,11 @@ binding_constraint = "Gross SF ceiling" if gross_ceiling <= nla_capacity else "N
 
 Run each check against the preliminary capacity number:
 
-**Workshop:** Does the building have a hybrid room (NLA room with ≥20% surplus) or a dedicated workshop room (35 SF × students per guide)? Windowless rooms should be prioritized for this. If no solution exists, reduce capacity until one does.
+**Workshop:** Does the building have a hybrid room (NLA room with ≥20% surplus beyond what the students in that room need) or a dedicated workshop room (35 SF × students per guide)? Windowless rooms should be prioritized for this. If no solution exists, reduce capacity until one does.
 
 **1:1 Meeting Space:** Is there at least one room ≥100 SF suitable for private meetings?
 
-**Play Area:** Is there on-site outdoor space (≥100 SF per student) or a qualifying off-site park (5-min walk, max 1 crosswalk, safe/maintained)?
+**Play Area:** Is there on-site outdoor space (≥100 SF per student) or a qualifying off-site park (5-min walk for a 7-year-old, max 1 crosswalk, safe/maintained)?
 
 **Dining:** Calculate: `ceil(capacity × 0.50 × 1.10) × 15 SF`. Is there enough non-NLA space for dining? Note: dining space can double as workshop but NOT as NLA.
 
